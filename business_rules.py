@@ -31,3 +31,23 @@ def get_event_discount(guests: int, nonprofit: bool = False) -> float:
     if guests >= MEDIUM_EVENT_GUESTS:
         return MEDIUM_DISCOUNT
     return NO_DISCOUNT
+
+
+def calculate_event_total(guest_price: float, guests: int, nonprofit: bool = False) -> float:
+    """Return the event total: discounted cost plus the service fee when it applies."""
+    food_cost = calculate_food_cost(guest_price, guests)
+    discount = get_event_discount(guests, nonprofit)
+    discounted_cost = food_cost * (1 - discount)
+    if discounted_cost <= SERVICE_FEE_LIMIT:
+        return discounted_cost + SERVICE_FEE
+    return discounted_cost
+
+
+def needs_signoff(total: float) -> bool:
+    """Return True when the event total needs a manager's sign-off."""
+    return total > SIGNOFF_LIMIT
+
+
+def needs_second_chef(guests: int, total: float) -> bool:
+    """Return True when the event needs a second chef."""
+    return guests > SECOND_CHEF_GUESTS or total >= SECOND_CHEF_TOTAL
