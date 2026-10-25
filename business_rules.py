@@ -51,3 +51,38 @@ def needs_signoff(total: float) -> bool:
 def needs_second_chef(guests: int, total: float) -> bool:
     """Return True when the event needs a second chef."""
     return guests > SECOND_CHEF_GUESTS or total >= SECOND_CHEF_TOTAL
+
+
+def total_booked(events: list) -> float:
+    """Return the sum of the event totals for every event in the list."""
+    total = 0.0
+    for event in events:
+        total = total + calculate_event_total(
+            event["guest_price"], event["guests"], event["nonprofit"]
+        )
+    return total
+
+
+def largest_event(events: list) -> str:
+    """Return the client of the event with the largest event total."""
+    largest_client = ""
+    largest_total = 0.0
+    for event in events:
+        event_total = calculate_event_total(
+            event["guest_price"], event["guests"], event["nonprofit"]
+        )
+        if event_total > largest_total:
+            largest_total = event_total
+            largest_client = event["client"]
+    return largest_client
+
+
+def format_event_line(client: str, total: float, signoff: bool, second_chef: bool) -> str:
+    """Return one line of the event report."""
+    signoff_text = "no"
+    if signoff:
+        signoff_text = "yes"
+    chef_text = "no"
+    if second_chef:
+        chef_text = "yes"
+    return f"{client}: ${total:.2f} | sign-off: {signoff_text} | second chef: {chef_text}"
