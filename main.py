@@ -27,7 +27,9 @@ signoff_count = 0
 chef_count = 0
 
 for event in events:
-    total = calculate_event_total(event["guest_price"], event["guests"], event["nonprofit"])
+    total = calculate_event_total(
+        event["guest_price"], event["guests"], event["nonprofit"]
+    )
     signoff = needs_signoff(total)
     second_chef = needs_second_chef(event["guests"], total)
     print(format_event_line(event["client"], total, signoff, second_chef))
