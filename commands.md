@@ -126,7 +126,7 @@ git log --oneline
 ```
 
 ```
-PASTE OUTPUT HERE
+
 ```
 18aaa1e (HEAD -> main, origin/main) Add commands.md terminal record
 15f06f1 Add README with rules, run and test steps, and file list
