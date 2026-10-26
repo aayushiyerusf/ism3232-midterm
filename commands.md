@@ -128,5 +128,14 @@ git log --oneline
 ```
 PASTE OUTPUT HERE
 ```
+18aaa1e (HEAD -> main, origin/main) Add commands.md terminal record
+15f06f1 Add README with rules, run and test steps, and file list
+d1fde51 Format code with ruff format
+3218792 Add 23 pytest tests covering every rule and limit
+47db9d8 Add main.py event report with summary counts
+ed55aa0 Add total_booked, largest_event, and format_event_line
+7dde945 Add calculate_event_total, needs_signoff, and needs_second_chef
+6a34b48 Add constants, calculate_food_cost, and get_event_discount
+6913e36 Set up midterm project structure
 
-There were 8 commits at that point.
+There were 9 commits at that point.
